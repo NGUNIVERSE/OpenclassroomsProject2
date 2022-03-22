@@ -7,7 +7,7 @@ import java.util.TreeMap;
 
 /**
  * Read symptoms from a file , perform an alphabetical sort , count the number of symptoms occurrences, write it to an output file.
- * @author Maxwell
+ * @author N.G
  *
  */
 public class AnalyticsCounter {

@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Set;
 /**
  * Write symptoms occurrences to a file.
- * @author Maxwell
+ * @author N.G
  *
  */
 public class WriteSymptomDataToFile implements ISymptomWriter
