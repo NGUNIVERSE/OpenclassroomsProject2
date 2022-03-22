@@ -1,49 +1,51 @@
 package com.hemebiotech.analytics;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 
-
+/**
+ * Read symptoms from a file , perform an alphabetical sort , count the number of symptoms occurrences, write it to an output file.
+ * @author Maxwell
+ *
+ */
 public class AnalyticsCounter {
 
 	
-	public static void main(String args[]) throws Exception {
+	public static void main(String args[]){
+		
+		/* Lecture du fichier d'entrée et copie dans un tableau */
+		String path = "Project02Eclipse/symptoms.txt";		
+		ISymptomReader reader = new ReadSymptomDataFromFile(path);
+		List<String> listSymptom = reader.getSymptoms();   	
+		
+		/* Calcul du nombre d'occurrences */
+		Map<String,Integer> myMap = countOccurences(listSymptom);  
 
-		List<String> listSymptom = new ArrayList<String>();
-		String path = "Project02Eclipse/symptoms.txt";
-		
-		ISymptomReader reader = new ReadSymptomDataFromFile(path); // Lecture du fichier
-		listSymptom=reader.getSymptoms();   // copie dans un tableau	
+		/* Ecriture du fichier de sortie */
+		String pathResults = "Project02Eclipse/results.out";	  
+		ISymptomWriter writer = new WriteSymptomDataToFile(pathResults);
+		writer.writeSymptoms(myMap); 	
+	} 
 	
+	/**
+	 * 	count the occurrence of symptoms from a list.
+	 * @param listSymptomCountOccurences	The symptoms to count.
+	 * @return a map which contain each symptoms the number of occurrences.
+	 */
+	public static Map<String,Integer> countOccurences(List<String> listSymptomCountOccurences)
+	{
+		/* Tri par ordre alphabétique */
+		Map<String,Integer> mapCountOccurences = new TreeMap<>(); 
 		
-		Map<String,Integer> myMap = new TreeMap<>(); // Trie par ordre alphabétique
-		
-		
-		for(String symptom:listSymptom) // nombre d'occurence des symptomes
+		/* nombre d'occurence des symptomes */
+		for(String symptom:listSymptomCountOccurences) 
 		{
-	        	myMap.put(symptom, myMap.getOrDefault(symptom, 0)+1);
+			mapCountOccurences.put(symptom, mapCountOccurences.getOrDefault(symptom, 0)+1);
 	        
 	    }
 		
-		FileWriter writer = new FileWriter("result.out");      // création du fichier de sortie
-		
-        Set<String> keys = myMap.keySet(); 
-        
-        for(String key: keys)    // remplissage du fichier de sortie
-        {
-        	writer.write(key+" = "+myMap.get(key) + "\n");
-         //   System.out.println(key+" = "+mapTriée.get(key));
-        }
-        writer.close();  // fermeture du fichier de sortie
-		
-
-	} 
+		return mapCountOccurences;
+	}
 }
