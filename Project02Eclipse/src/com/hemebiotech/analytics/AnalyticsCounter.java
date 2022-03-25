@@ -13,7 +13,7 @@ import java.util.TreeMap;
 public class AnalyticsCounter {
 
 	
-	public static void main(String args[]){
+	public static void main(String args[]) {
 		
 		/* Lecture du fichier d'entrée et copie dans un tableau */
 		String path = "Project02Eclipse/symptoms.txt";		
@@ -34,14 +34,12 @@ public class AnalyticsCounter {
 	 * @param listSymptomCountOccurences	The symptoms to count.
 	 * @return a map which contain each symptoms the number of occurrences.
 	 */
-	public static Map<String,Integer> countOccurences(List<String> listSymptomCountOccurences)
-	{
+	public static Map<String,Integer> countOccurences(List<String> listSymptomCountOccurences) {
 		/* Tri par ordre alphabétique */
 		Map<String,Integer> mapCountOccurences = new TreeMap<>(); 
 		
 		/* nombre d'occurence des symptomes */
-		for(String symptom:listSymptomCountOccurences) 
-		{
+		for(String symptom:listSymptomCountOccurences) {
 			mapCountOccurences.put(symptom, mapCountOccurences.getOrDefault(symptom, 0)+1);
 	        
 	    }

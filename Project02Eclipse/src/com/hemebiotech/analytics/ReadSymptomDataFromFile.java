@@ -10,8 +10,7 @@ import java.util.List;
  * Read symptoms from a file.
  *
  */
-public class ReadSymptomDataFromFile implements ISymptomReader 
-{
+public class ReadSymptomDataFromFile implements ISymptomReader {
 
 	private String filepath;
 	
@@ -24,19 +23,15 @@ public class ReadSymptomDataFromFile implements ISymptomReader
 	}
 	
 	@Override
-	public List<String> getSymptoms() 
-	{
+	public List<String> getSymptoms() {
 		List<String> result = new ArrayList<String>();
 		
-		if (filepath != null) 
-		{
+		if (filepath != null) {
 			/* Ouverture du fichier d'entrée, gestion des erreurs et fermeture du fichier */
-			try( BufferedReader reader = new BufferedReader (new FileReader(filepath))) 
-			{
+			try( BufferedReader reader = new BufferedReader (new FileReader(filepath))) {
 					String line = reader.readLine();
 				
-					while (line != null)
-					{
+					while (line != null) {
 					
 						result.add(line);
 						line = reader.readLine();
@@ -44,14 +39,11 @@ public class ReadSymptomDataFromFile implements ISymptomReader
 					}
 					
 			} 
-			catch (IOException e)
-			{
+			catch (IOException e) {
 				e.printStackTrace();
 				
 			}
 		}
-		else 
-		{}
 		
 		return result;
 	}
